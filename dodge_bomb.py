@@ -29,11 +29,10 @@ def game_over(screen):
     pg.draw.rect(go_img,(0,0,0),(0,0,WIDTH,HEIGHT))
     go_rct =go_img.get_rect()
     go_rct.center =WIDTH/2,HEIGHT/2
-    go_img.set_alpha(100)
+    go_img.set_alpha(100)  #画面の透過
     crying_img = pg.image.load("fig/8.png")
-    crying2_img = pg.image.load("fig/8.png")
-    crying_rct = crying_img.get_rect(center=(WIDTH // 2-190, HEIGHT // 2))
-    crying2_rct = crying2_img.get_rect(center=(WIDTH // 2+190, HEIGHT // 2))
+    crying_rct = crying_img.get_rect(center=(WIDTH // 2-190, HEIGHT // 2))  #こうかとんの作成
+    crying2_rct = crying_img.get_rect(center=(WIDTH // 2+190, HEIGHT // 2))  #こうかとんの作成
     font = pg.font.Font(None, 80)
     game_over_text = font.render("Game Over", True, (255, 255, 255))
     text_rect = game_over_text.get_rect(center=(WIDTH // 2-10, HEIGHT // 2))
@@ -41,7 +40,7 @@ def game_over(screen):
     screen.blit(go_img,go_rct)
 
     screen.blit(crying_img, crying_rct)
-    screen.blit(crying2_img, crying2_rct)
+    screen.blit(crying_img, crying2_rct)
     screen.blit(game_over_text, text_rect)
     pg.display.update()
     time.sleep(5)
