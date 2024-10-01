@@ -70,6 +70,8 @@ def main():
         if not yoko:
             vx *= -1 
         screen.blit(kk_img, kk_rct)
+        if kk_rct.colliderect(bb_rct):
+            return
         pg.display.update()
         tmr += 1
         clock.tick(50)
