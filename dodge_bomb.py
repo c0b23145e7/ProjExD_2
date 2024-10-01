@@ -24,6 +24,7 @@ def main():
     pg.draw.circle(bb_img,(255,0,0),(10,10),10)
     bb_rct = bb_img.get_rect()
     bb_rct.center = random.randint(0, WIDTH), random.randint(0,HEIGHT)
+    vx, vy =+5, -5
     clock = pg.time.Clock()
     tmr = 0
     while True:
@@ -49,6 +50,7 @@ def main():
                 sum_mv[0] += tpl[0]  #横
                 sum_mv[1] += tpl[1]  #縦
         kk_rct.move_ip(sum_mv)
+        bb_rct.move_ip(vx,vy)
         screen.blit(kk_img, kk_rct)
         pg.display.update()
         tmr += 1
