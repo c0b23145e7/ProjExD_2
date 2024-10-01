@@ -1,5 +1,6 @@
 import os
 import random
+import time
 import sys
 import pygame as pg
 
@@ -20,6 +21,30 @@ def check_bound(obj_rct: pg.rect) -> tuple[bool,bool]:
     if obj_rct.top <0 or HEIGHT <obj_rct.bottom:
         tate = False
     return yoko, tate   
+
+
+def game_over(screen):
+    go_img = pg.Surface((WIDTH,HEIGHT))
+    
+    pg.draw.rect(go_img,(0,0,0),(0,0,WIDTH,HEIGHT))
+    go_rct =go_img.get_rect()
+    go_rct.center =WIDTH/2,HEIGHT/2
+    go_img.set_alpha(100)
+    crying_img = pg.image.load("fig/8.png")
+    crying2_img = pg.image.load("fig/8.png")
+    crying_rct = crying_img.get_rect(center=(WIDTH // 2-190, HEIGHT // 2))
+    crying2_rct = crying2_img.get_rect(center=(WIDTH // 2+190, HEIGHT // 2))
+    font = pg.font.Font(None, 80)
+    game_over_text = font.render("Game Over", True, (255, 255, 255))
+    text_rect = game_over_text.get_rect(center=(WIDTH // 2-10, HEIGHT // 2))
+    
+    screen.blit(go_img,go_rct)
+
+    screen.blit(crying_img, crying_rct)
+    screen.blit(crying2_img, crying2_rct)
+    screen.blit(game_over_text, text_rect)
+    pg.display.update()
+    time.sleep(5)
 
 
 
@@ -71,6 +96,7 @@ def main():
             vx *= -1 
         screen.blit(kk_img, kk_rct)
         if kk_rct.colliderect(bb_rct):
+            game_over(screen)
             return
         pg.display.update()
         tmr += 1
